@@ -123,39 +123,7 @@ DATE_FORMAT = 'Y-m-d'
 
 SUIT_CONFIG = {
     'ADMIN_NAME': '网站后台管理系统',
-    'MENU': (
 
-        # Keep original label and models
-        'sites',
-
-        # Rename app and set icon
-        {'app': 'auth', 'label': 'Authorization', 'icon': 'icon-lock'},
-
-        # Reorder app models
-        {'app': 'auth', 'models': ('user', 'group')},
-
-        # Custom app, with models
-        {'label': 'Settings', 'icon': 'icon-cog',
-            'models': ('auth.user', 'auth.group')},
-
-        # Cross-linked models with custom name; Hide default icon
-        {'label': 'Custom', 'icon': None, 'models': (
-            'auth.group',
-            {'model': 'auth.user', 'label': 'Staff'}
-        )},
-
-        # Custom app, no models (child links)
-        {'label': 'Users', 'url': 'auth.user', 'icon': 'icon-user'},
-
-        # Separator
-        '-',
-
-        # Custom app and model with permissions
-        {'label': 'Secure', 'permissions': 'auth.add_user', 'models': [
-            {'label': 'custom-child',
-                'permissions': ('auth.add_user', 'auth.add_group')}
-        ]},
-    )
 }
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
