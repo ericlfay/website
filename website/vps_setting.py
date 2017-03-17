@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-import dj_database_url
+# import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    'suit',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -85,10 +84,10 @@ WSGI_APPLICATION = 'website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd6knpo019k4gao',
-        'USER': 'gelfohmxisince',
-        'PASSWORD': '49e9c5695f2307574e8b5f1431ecff62d7e5e962d7da355c42e5aad3154ca071',
-        'HOST': 'ec2-54-163-236-33.compute-1.amazonaws.com',
+        'NAME': 'fsktdtwy',
+        'USER': 'fsktdtwy',
+        'PASSWORD': 'tY0RWV5v2grcfSJ5n5fapoKPjcLS12MD',
+        'HOST': 'stampy.db.elephantsql.com',
         'PORT': '5432'
     }
 }
@@ -118,8 +117,8 @@ USE_L10N = True
 USE_TZ = True
 
 # Update database configuration with $DATABASE_URL.
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(db_from_env)
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -141,5 +140,3 @@ STATICFILES_DIRS = [
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
