@@ -113,14 +113,49 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'zh-Hans'
 TIME_ZONE = 'Asia/Shanghai'
+
 USE_I18N = True
 USE_L10N = False
 USE_TZ = True
+
 DATETIME_FORMAT = 'Y-m-d H:i:s'
 DATE_FORMAT = 'Y-m-d'
 
 SUIT_CONFIG = {
     'ADMIN_NAME': '网站后台管理系统',
+    'MENU': (
+
+        # Keep original label and models
+        'sites',
+
+        # Rename app and set icon
+        {'app': 'auth', 'label': 'Authorization', 'icon': 'icon-lock'},
+
+        # Reorder app models
+        {'app': 'auth', 'models': ('user', 'group')},
+
+        # Custom app, with models
+        {'label': 'Settings', 'icon': 'icon-cog',
+            'models': ('auth.user', 'auth.group')},
+
+        # Cross-linked models with custom name; Hide default icon
+        {'label': 'Custom', 'icon': None, 'models': (
+            'auth.group',
+            {'model': 'auth.user', 'label': 'Staff'}
+        )},
+
+        # Custom app, no models (child links)
+        {'label': 'Users', 'url': 'auth.user', 'icon': 'icon-user'},
+
+        # Separator
+        '-',
+
+        # Custom app and model with permissions
+        {'label': 'Secure', 'permissions': 'auth.add_user', 'models': [
+            {'label': 'custom-child',
+                'permissions': ('auth.add_user', 'auth.add_group')}
+        ]},
+    )
 }
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
@@ -146,5 +181,5 @@ STATICFILES_DIRS = [
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-import dj_database_url
+
 DATABASES['default'] = dj_database_url.config()
