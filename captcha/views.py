@@ -6,5 +6,5 @@ private_key = "233548502f29536550efec5a007451e2"
 
 
 def loginview(request):
-	'''user login view'''
+    '''user login view'''
     return render(request, 'index.html')
