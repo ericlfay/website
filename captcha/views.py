@@ -70,5 +70,5 @@ class CaptchaValidateMixin(object):
 
 
 class SignUpValidatedView(CaptchaValidateMixin, SignupView):
-	'''注册地址'''
+    '''注册地址'''
     pass
