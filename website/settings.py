@@ -160,5 +160,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DATABASES['default'] = dj_database_url.config()
 
-# LOGIN_URL = '/account/login/'
-# LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/account/login/'
+LOGIN_REDIRECT_URL = '/'
