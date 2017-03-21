@@ -14,10 +14,11 @@ private_key = "233548502f29536550efec5a007451e2"
 
 
 class CaptchaView(View):
-	'''验证view'''
+    '''验证view'''
     captcha_lib = GeetestLib(captcha_id, private_key)
 
     def get(self, request):
+        '''验证view'''
         self._add_captcha_to_session()
         return HttpResponse(self._get_captcha())
 
@@ -32,8 +33,10 @@ class CaptchaView(View):
 
 
 class CaptchaValidateMixin(object):
+    '''验证view'''
 
     def dispatch(self, request, *args, **kwargs):
+        '''验证view'''
         self.request = request
 
         # 如果提交表单时, 验证码验证失败, 重定向回当前地址
@@ -67,4 +70,5 @@ class CaptchaValidateMixin(object):
 
 
 class SignUpValidatedView(CaptchaValidateMixin, SignupView):
+	'''注册地址'''
     pass
