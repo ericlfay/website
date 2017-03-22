@@ -160,5 +160,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DATABASES['default'] = dj_database_url.config()
 
-LOGIN_URL = '/account/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/admin/'
+ACCOUNT_EMAIL_VERIFICATION = False
+ACCOUNT_USERNAME_REQUIRED = False
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

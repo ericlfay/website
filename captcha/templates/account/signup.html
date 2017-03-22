@@ -1,9 +1,112 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>test</title>
+    <title>注册</title>
+      <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/login.css">
 </head>
 <body>
-signup
+<div class="container">
+  <div class="row">
+  <div class="form-signin">
+  <h2>signup</h2>
+  	<form  id="register-form" method="POST" action="{% url 'account_signup' %}">
+                                {% csrf_token %}
+     <div class="form-group">
+                        <div class="input-icon input-icon-lg">
+                            <i class="zmdi zmdi-email"></i>
+                            <input id="id_email" name="email" class="form-control input-lg" type="text" placeholder="邮箱" required="" autofocus>
+                        </div>
+                    </div>
+                    {% if form.email.errors %}
+                        <div class="base_message error_message">
+                            {{ form.email.errors }}
+                        </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <div class="input-icon input-icon-lg">
+                            <i class="zmdi zmdi-lock-outline"></i>
+                            <input id="id_password1" name="password1" class="form-control input-lg" type="password" placeholder="密码" required="">
+                        </div>
+                    </div>
+                    {% if form.password1.errors %}
+                        <div class="base_message error_message">
+                            {{ form.password1.errors }}
+                        </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <div class="input-icon input-icon-lg">
+                            <i class="zmdi zmdi-lock-outline"></i>
+                            <input id="id_password2" name="password2" class="form-control input-lg" type="password" placeholder="确认密码" required="">
+                        </div>
+                    </div>
+                    {% if form.password2.errors %}
+                        <div class="base_message error_message">
+                            {{ form.password2.errors }}
+                        </div>
+                    {% endif %}
+                    <div style="margin-bottom: 15px">
+                        <div style="width:290px;margin: auto" id="embed-captcha"></div>
+                        <p id="wait" class="show">正在加载验证码......</p>
+                        <p id="notice" class="hide">请先拖动验证码到相应位置</p>
+                    </div>
+                    <button id="embed-submit" class="btn btn-block btn-primary" type="submit">创建账户</button>
+
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+
+                </form>
+
+                <hr class="hr10"/>
+
+                <div class="textcenter">
+                    已经注册了? <a href="{% url "account_login" %}">登录</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/jquery.js"></script>
+<script src="https://static.geetest.com/static/tools/gt.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#register-form').preventDoubleSubmission();
+    });
+</script>
+
+<script>
+    var handlerEmbed = function (captchaObj) {
+        $("#embed-submit").click(function (e) {
+            var validate = captchaObj.getValidate();
+            if (!validate) {
+                $("#notice")[0].className = "show";
+                setTimeout(function () {
+                    $("#notice")[0].className = "hide";
+                }, 2000);
+                e.preventDefault();
+            }
+        });
+        captchaObj.appendTo("#embed-captcha");
+        captchaObj.onReady(function () {
+            $("#wait")[0].className = "hide";
+        });
+    };
+    $.ajax({
+        url: "{% url 'captcha:get_captcha' %}?t=" + (new Date()).getTime(),
+        type: "get",
+        dataType: "json",
+        success: function (data) {
+            initGeetest({
+                gt: data.gt,
+                challenge: data.challenge,
+                product: "embed",
+                offline: !data.success
+            }, handlerEmbed);
+        }
+    });
+</script>
 </body>
 </html>

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,7 +77,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'website.wsgi.application'
-
+SITE_ID = 1
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
@@ -127,6 +128,22 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_URL = '/account/login/'
-LOGIN_REDIRECT_URL = '/index/'
 
+LANGUAGE_CODE = 'zh-Hans'
+TIME_ZONE = 'Asia/Shanghai'
+
+USE_I18N = True
+USE_L10N = False
+USE_TZ = True
+
+DATETIME_FORMAT = 'Y-m-d H:i:s'
+DATE_FORMAT = 'Y-m-d'
+
+SUIT_CONFIG = {
+    'ADMIN_NAME': '网站后台管理系统',
+
+}
+LOGIN_REDIRECT_URL = '/admin/'
+ACCOUNT_EMAIL_VERIFICATION = False
+ACCOUNT_USERNAME_REQUIRED = False
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 

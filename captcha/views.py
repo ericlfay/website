@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.views.generic import View
 
-from allauth.account.views import SignupView
+from allauth.account.views import SignupView, LoginView
 from captcha.geetest import GeetestLib
 
 
@@ -71,4 +71,9 @@ class CaptchaValidateMixin(object):
 
 class SignUpValidatedView(CaptchaValidateMixin, SignupView):
     '''注册地址'''
+    pass
+
+
+class LoginValidatedView(CaptchaValidateMixin, LoginView):
+    '''登录地址'''
     pass
