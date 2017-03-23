@@ -146,4 +146,4 @@ SUIT_CONFIG = {
 LOGIN_REDIRECT_URL = '/admin/'
 ACCOUNT_EMAIL_VERIFICATION = False
 ACCOUNT_USERNAME_REQUIRED = False
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

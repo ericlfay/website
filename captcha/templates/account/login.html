@@ -7,10 +7,10 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container ">
   <div class="row">
-  <div class="form-signin">
-  <h2>login</h2>
+  <div class="form-signin ">
+  <h1>login</h1>
   	<form class="login" method="POST" action="{% url 'account_login' %}">
                                 {% csrf_token %}
     <div class="form-group">
@@ -50,6 +50,9 @@
     <hr class="hr20"/>
 
 </form>
+                <div class="textcenter">
+                    还没有账号? <a href="{% url "account_signup" %}">注册</a>
+                </div>
 </div>
 </div>
 </div>
